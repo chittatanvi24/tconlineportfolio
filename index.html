@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Colorful Portfolio</title>
+    <style>
+        /* --- CSS STYLES --- */
+        
+        /* 1. General Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        /* 2. The Navigation Bar */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav button {
+            background-color: #333;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 20px;
+            font-size: 17px;
+            color: white;
+            transition: 0.3s;
+            width: 25%; /* Splits the bar into 4 equal parts */
+        }
+
+        /* Change color when hovering over buttons */
+        nav button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* The active button color */
+        nav button.active {
+            background-color: #ff6b6b; /* Matches the Home color */
+            font-weight: bold;
+        }
+
+        /* 3. The Page Content Sections */
+        .page-content {
+            display: none; /* Hides pages by default */
+            padding: 50px 20px;
+            height: 100vh; /* Full height of the screen */
+            color: white;
+        }
+
+        /* Specific Colors for each page */
+        #home {
+            background-color: #ff6b6b; /* Red/Coral */
+            display: block; /* Show Home by default */
+        }
+
+        #projects {
+            background-color: #4ecdc4; /* Teal/Mint */
+        }
+
+        #resume {
+            background-color: #ffe66d; /* Yellow */
+            color: #333; /* Dark text for better readability on yellow */
+        }
+
+        #contact {
+            background-color: #1a535c; /* Dark Blue */
+        }
+
+        /* 4. Simple Containers for Text */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.2); /* Slightly transparent white box */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 { font-size: 3em; }
+        p { font-size: 1.2em; line-height: 1.6; }
+        
+        /* Input fields for contact form styling */
+        input, textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button class="tab-link active" onclick="openPage('home', this)">About Me</button>
+        <button class="tab-link" onclick="openPage('projects', this)">Projects</button>
+        <button class="tab-link" onclick="openPage('resume', this)">Resume</button>
+        <button class="tab-link" onclick="openPage('contact', this)">Contact</button>
+    </nav>
+
+    <div id="home" class="page-content">
+        <div class="container">
+            <h1>Hello, I'm [Tanvi]!</h1>
+            <p>Welcome to my personal website.</p>
+            <hr>
+            <h3>About Me</h3>
+            <p>
+                [Write a short paragraph here about who you are. Example: I am a student learning web development. I love coding, video games, and hiking.]
+            </p>
+            <p>
+                [Second paragraph about your goals. Example: My goal is to become a software engineer.]
+            </p>
+        </div>
+    </div>
+
+    <div id="projects" class="page-content">
+        <div class="container">
+            <h1>My Projects</h1>
+            <p>Here are some things I have worked on:</p>
+            
+            <div style="text-align: left; margin-top: 30px;">
+                <h3>Project 1: [Project Name]</h3>
+                <p>[Description of what you made. Example: A calculator app made with Python.]</p>
+                
+                <hr>
+
+                <h3>Project 2: [Project Name]</h3>
+                <p>[Description of what you made. Example: A weather website using HTML and CSS.]</p>
+                
+               
+            </div>
+        </div>
+    </div>
+
+    <div id="resume" class="page-content">
+        <div class="container">
+            <h1>My Resume</h1>
+            
+            <div style="text-align: left;">
+                <h3>Education</h3>
+                <ul>
+                    <li><strong>[School Name]</strong> - [Year] to [Year]</li>
+                    <li>Degree/Certificate: [Your Degree]</li>
+                </ul>
+
+                <h3>Experience</h3>
+                <ul>
+                    <li><strong>[Job Title]</strong> at [Company Name]</li>
+                    <li>[Date Started] - [Date Ended]</li>
+                    <li>[Description of what you did there]</li>
+                </ul>
+
+                <h3>Skills</h3>
+                <p>HTML, CSS, JavaScript, Teamwork, Communication</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="page-content">
+        <div class="container">
+            <h1>Contact Me</h1>
+            <p>Feel free to reach out!</p>
+            
+            <p><strong>Email:</strong> [your-email@example.com]</p>
+            <p><strong>Phone:</strong> [123-456-7890]</p>
+            <p><strong>LinkedIn:</strong> [Link to your profile]</p>
+
+            <hr>
+            <h3>Send a Message</h3>
+            <form>
+                <input type="text" placeholder="Your Name"><br>
+                <input type="email" placeholder="Your Email"><br>
+                <textarea rows="5" placeholder="Your Message"></textarea><br>
+                <button type="button" style="padding: 10px 20px; cursor: pointer;">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT LOGIC --- */
+
+        function openPage(pageName, element) {
+            // 1. Hide all elements with class="page-content" by default
+            var i, content, tablinks;
+            content = document.getElementsByClassName("page-content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+
+            // 2. Remove the background color of all tab buttons (make them inactive)
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].style.backgroundColor = "#333"; // Reset to dark gray
+            }
+
+            // 3. Show the specific page we clicked on
+            document.getElementById(pageName).style.display = "block";
+
+            // 4. Add the "active" class to the button we clicked
+            element.className += " active";
+
+            // 5. Change the button color to match the page background for a cool effect
+            var colorToMatch = window.getComputedStyle(document.getElementById(pageName)).backgroundColor;
+            element.style.backgroundColor = colorToMatch;
+        }
+    </script>
+
+</body>
+</html>
